@@ -22,14 +22,18 @@ const Dashboard = () => {
 
   const handleViewAll = (path) => navigate(path);
 
+  console.log({
+    sortedVisitors,
+  });
+
   return (
     <Container fluid>
       {/* Visitors Section */}
       <Section
         title="Visitors Overview"
         data={sortedVisitors}
-        fields={["name", "phone", "email", "address"]}
-        headers={["#", "Name", "Phone", "Email", "Address"]}
+        fields={["fin", "name", "phone", "email", "address"]}
+        headers={["#", "Fin", "Name", "Phone", "Email", "Address"]}
         noDataMessage="No visitors available"
         onViewAll={() => handleViewAll("/visitors/all")}
       />

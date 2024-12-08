@@ -10,7 +10,6 @@ const departmentSlice = createSlice({
   reducers: {
     addDepartment: (state, action) => {
       const updatedState = [...state, action.payload];
-      console.log("State after adding department:", updatedState);
       return updatedState;
     },
     deleteDepartment: (state, action) => {

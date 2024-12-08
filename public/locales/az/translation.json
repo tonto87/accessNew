@@ -68,14 +68,14 @@
     "addPhoto": "Şəkil əlavə et"
   },
 
-  "visitorReport": {
-    "title": "Ziyarətçi Hesabatı",
-    "generateReport": "Hesabatı Yarat",
-    "downloadReport": "Hesabatı Yüklə",
-    "dateRange": "Tarix Aralığı",
-    "from": "Başlanğıc",
-    "to": "Son",
-    "noData": "Bu dövr üçün məlumat mövcud deyil"
+  "visitorComplaint": {
+    "loading": "Yüklənir",
+    "noComplaintsFound": "Şikayət tapılmadı",
+    "photo": "Foto",
+    "name": "Ad",
+    "date": "Tarix",
+    "description": "Təsvir",
+    "profile": "Profil səhifəsi"
   },
 
   "visitorView": {
@@ -86,7 +86,13 @@
     "fin": "FIN",
     "email": "Elektron ünvan",
     "address": "Ünvan",
-    "description": "Təsvir"
+    "description": "Təsvir",
+    "showMore":"Daha çox",
+    "blocked":"Bloklanıb",
+    "block":"Bloklan",
+    "report":"Şikayət",
+    "submit": "Əlavə Et"
+
   },
 
   "office": {
@@ -154,7 +160,7 @@
     "visitors": "Ziyarətçilər",
     "addVisitor": "Ziyarətçi Əlavə Et",
     "editVisitor": "Ziyarətçini Redaktə Et",
-    "visitorReport": "Ziyarətçi Hesabatı",
+    "visitorComplaint": "Ziyarətçi Hesabatı",
     "offices": "Ofislər",
     "addOffice": "Ofis əlavə et",
     "departments": "Şöbələr",

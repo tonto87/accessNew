@@ -12,9 +12,8 @@ import { ToastContainer } from "react-toastify";
 
 import Main from "./Main"; // Import the Main component
 import Login from "./components/Pages/Login/Login";
-import { AuthProvider, useAuth } from "./contexts/auth/AuthContext";
+import { AuthProvider } from "./contexts/auth/AuthContext";
 import store from "./store";
-import ProtectedRoute from "./components/ProtectedRoute";
 
 import "react-toastify/dist/ReactToastify.css";
 import "./App.scss";
@@ -30,7 +29,6 @@ function App() {
           <Router>
             <Routes>
               <Route path="/login" element={<Login />} />
-              {/* Protected Route for Main */}
               <Route path="*" element={<PrivateRoute element={<Main />} />} />
             </Routes>
           </Router>
@@ -42,12 +40,8 @@ function App() {
 }
 
 function PrivateRoute({ element }) {
-  const { isAuthenticated } = useAuth(); // Assuming isAuthenticated is a boolean indicating the user's authentication status
+  const isAuthenticated = localStorage.getItem("token") !== null;
 
-  // Log the authentication status to verify
-  console.log("Authenticated:", isAuthenticated);
-
-  // If not authenticated, redirect to login page, otherwise show the protected route element
   return isAuthenticated ? element : <Navigate to="/login" />;
 }
 

@@ -36,12 +36,15 @@ const visitorSlice = createSlice({
       },
     ],
     loading: false,
-    meta: {},
+    meta: null,
   },
 
   reducers: {
     setVisitors(state, action) {
-      state.data = action.payload;
+      return {
+        ...state,
+        data: action.payload,
+      };
     },
     setLoading(state, action) {
       state.loading = action.payload;
@@ -101,6 +104,9 @@ const visitorSlice = createSlice({
         updatedAt: new Date().toISOString(),
       };
     },
+    setVisitorsMeta: (state, action) => {
+      state.meta = action.payload;
+    },
   },
 });
 
@@ -113,7 +119,7 @@ export const {
   updatePersona,
   setVisitors,
   setLoading,
-  setVisitorMeta,
+  setVisitorsMeta,
 } = visitorSlice.actions;
 
 export default visitorSlice.reducer;

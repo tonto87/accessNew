@@ -44,16 +44,9 @@ const Sidebar = ({ isCollapsed, onToggleCollapse }) => {
     return isCollapsed && !isMouseOn;
   }, [isCollapsed, isMouseOn]);
 
-  // const handleLogout = () => {
-  //     logout(dispatch);
-  //     navigate('/login'); // Redirect to the login page after logout
-  //   };
-
-  // Correct logout function
   const handleLogout = () => {
-    // Dispatch the logout action to reset Redux state
+    localStorage.removeItem("token");
     dispatch(logout());
-    // Redirect user to login page after logging out
     navigate("/login");
   };
 

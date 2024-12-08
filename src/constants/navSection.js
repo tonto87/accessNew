@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   FaBuilding,
   FaChartBar,
@@ -6,72 +6,73 @@ import {
   FaUserCheck,
   FaUsers,
   FaUserTimes,
-} from 'react-icons/fa';
-import { AppPaths } from './appPaths';
+} from "react-icons/fa";
+import { AppPaths } from "./appPaths";
 
 // import dashboard from "../assets/icons/dashboard/dashboard.svg";
 
 const sections = [
   // { title: "Dashboard", icon: dashboard, path: AppPaths.offices.dashboard },
   {
-    title: 'officesDepartments',
+    title: "officesDepartments",
     departments: [
       {
-        title: 'offices',
+        title: "offices",
         icon: <FaChartBar />,
         items: [
-          { label: 'all', path: AppPaths.offices.all },
-          { label: 'add', path: AppPaths.offices.add },
+          { label: "all", path: AppPaths.offices.all },
+          { label: "add", path: AppPaths.offices.add },
         ],
       },
       {
-        title: 'departments',
+        title: "departments",
         icon: <FaBuilding />,
         items: [
-          { label: 'all', path: AppPaths.departments.all },
-          { label: 'add', path: AppPaths.departments.add },
+          { label: "all", path: AppPaths.departments.all },
+          { label: "add", path: AppPaths.departments.add },
         ],
       },
     ],
   },
   {
-    title: 'visitors',
+    title: "visitors",
     departments: [
       {
-        title: 'visitors',
+        title: "visitors",
         icon: <FaUser />,
         items: [
-          { label: 'all', path: AppPaths.visitors.all },
-          { label: 'add', path: AppPaths.visitors.add },
+          { label: "all", path: AppPaths.visitors.all },
+          { label: "add", path: AppPaths.visitors.add },
+          { label: "Report", path: AppPaths.visitors.complaint },
         ],
       },
       {
-        title: 'personaNonGrata',
+        title: "personaNonGrata",
         icon: <FaUserTimes />,
         items: [
-          { label: 'all', path: AppPaths.visitors.persona.all },
-          { label: 'add', path: AppPaths.visitors.persona.add },
+          { label: "all", path: AppPaths.visitors.persona.all },
+          { label: "add", path: AppPaths.visitors.persona.add },
         ],
       },
     ],
   },
   {
-    title: 'usersPermissions',
+    title: "usersPermissions",
     departments: [
       {
-        title: 'users',
+        title: "users",
         icon: <FaUsers />,
         items: [
-          { label: 'all', path: AppPaths.users.permissions.list },
-          { label: 'add', path: AppPaths.users.permissions.addUser },
+          { label: "all", path: AppPaths.users.permissions.list },
+          { label: "add", path: AppPaths.users.permissions.addUser },
         ],
       },
       {
-        title: 'permissions',
+        title: "permissions",
         icon: <FaUserCheck />,
         items: [
-          { label: 'all', path: AppPaths.users.permissions.all },
-          { label: 'add', path: AppPaths.users.permissions.add },
+          { label: "all", path: AppPaths.users.permissions.all },
+          { label: "add", path: AppPaths.users.permissions.add },
         ],
       },
     ],

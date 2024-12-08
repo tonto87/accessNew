@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { useParams, useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import { editDepartment } from '../../../store/reducers/departmentReducer';
-import Breadcrumb from '../Breadcrumb';
-import './style.scss';
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useParams, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { editDepartment } from "../../../store/reducers/departmentReducer";
+import Breadcrumb from "../Breadcrumb";
+import "./style.scss";
 
 const DepartmentEdit = () => {
   const { id } = useParams();
@@ -13,13 +13,15 @@ const DepartmentEdit = () => {
   const { data: offices } = useSelector((state) => state.offices);
 
   const department = useSelector((state) =>
-    state.departments.departmentsData.find((department) => department.id === id)
+    state.departments.departmentsData.find(
+      (department) => department.id === id,
+    ),
   );
 
   const [formData, setFormData] = React.useState({
-    name: '',
-    phone: '',
-    office: '',
+    name: "",
+    phone: "",
+    office: "",
   });
 
   useEffect(() => {
@@ -30,9 +32,9 @@ const DepartmentEdit = () => {
         office: department.office,
       });
     } else {
-      navigate('/departments/all');
+      navigate("/departments/all");
     }
-  }, [department, navigate]);
+  }, []);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -41,8 +43,8 @@ const DepartmentEdit = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(editDepartment({ id: department.id, data: formData }));
-    toast.success('Department successfully edited');
-    navigate('/departments/all');
+    toast.success("Department successfully edited");
+    navigate("/departments/all");
   };
 
   if (!department) {
@@ -54,9 +56,9 @@ const DepartmentEdit = () => {
       <div className="offices-wrapper d-row">
         <Breadcrumb
           paths={[
-            { label: 'Dashboard', to: '/' },
-            { label: 'Departments', to: '/departments/list' },
-            { label: 'Department - Edit' },
+            { label: "Dashboard", to: "/" },
+            { label: "Departments", to: "/departments/list" },
+            { label: "Department - Edit" },
           ]}
         />
       </div>

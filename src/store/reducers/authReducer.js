@@ -9,7 +9,12 @@ const authSlice = createSlice({
   },
   reducers: {
     loginSuccess(state, action) {
-      state.user = action.payload; // Store the user data
+      console.log({ payload: action.payload });
+      state.user = {
+        role: action.payload.role,
+        email: action.payload.email,
+        name: action.payload.name,
+      }; // Store the user data
       state.isAuthenticated = true; // Set the user as authenticated
       state.error = null; // Clear any previous errors
     },

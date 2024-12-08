@@ -68,15 +68,15 @@
     "addPhoto": "Add Photo"
   },
 
-  "visitorReport": {
-    "title": "Visitor Report",
-    "generateReport": "Generate Report",
-    "downloadReport": "Download Report",
-    "dateRange": "Date Range",
-    "from": "From",
-    "to": "To",
-    "noData": "No data available for this period"
-  },
+  "visitorComplaint": {
+    "loading": "Loading",
+    "noComplaintsFound": "No Complaints found",
+    "photo": "Photo",
+    "name": "Name",
+    "date": "Date",
+    "description": "Description",
+    "profile": "Profile Page"
+     },
 
   "visitorView": {
     "noPhoto": "No photo available",
@@ -86,12 +86,17 @@
     "fin": "FIN",
     "email": "Email",
     "address": "Address",
-    "description": "Description"
+    "description": "Description",
+    "showMore":"Show More",
+    "blocked":"Blocked",
+    "block":"Block",
+    "report":"Report",
+    "submit": "Submit"
   },
 
   "office": {
     "add": {
-      "add": "Add new Office",
+      "add": "New Office",
       "success": "Office successfully added",
       "officeExists": "Office already exists",
       "officeName": "Office Name",
@@ -148,12 +153,12 @@
       "submit": "Submit"
     }
   },
-  "breadcrumb": {
+   "breadcrumb": {
     "dashboard": "Dashboard",
     "visitors": "Visitors",
     "addVisitor": "Add Visitor",
     "editVisitor": "Edit Visitor",
-    "visitorReport": "Visitor Report",
+    "visitorComplaint": "Visitor Complaint",
     "offices": "Offices",
     "addOffice": "Office",
     "departments": "Departments",

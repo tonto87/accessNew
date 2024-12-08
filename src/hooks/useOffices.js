@@ -40,7 +40,6 @@ export const useFetchOfficeById = (id) => {
 
 export const useAddOffice = () => {
   const queryClient = useQueryClient();
-  console.log(queryClient);
   return useMutation({
     mutationFn: addOffice,
     onSuccess: () => {

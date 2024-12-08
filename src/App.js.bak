@@ -137,8 +137,8 @@ function App() {
                     />
 
                     <Route
-                      path={AppPaths.visitors.report}
-                      element={<VisitorReport />}
+                      path={AppPaths.visitors.complain}
+                      element={<VisitorComplain />}
                     />
                     <Route
                       path={AppPaths.visitors.persona.add}

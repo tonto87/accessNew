@@ -1,21 +1,25 @@
 import React, { useState, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { FaEdit, FaEye, FaRegTrashAlt } from "react-icons/fa";
-import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { format } from "date-fns";
+
 import { AppPaths } from "../../../constants/appPaths";
 import Avatar from "../../../modules/Avatar";
 import DataTable from "../../../modules/DataTable";
-import { deleteVisitor } from "../../../store/reducers/visitorReducer";
 import Breadcrumb from "../Breadcrumb";
+import { useDeleteVisitor, useFetchVisitors } from "../../../hooks/useVisitors";
+import { Button } from "react-bootstrap";
 
 const VisitorsAll = () => {
   const { t } = useTranslation();
 
-  const visitors = useSelector((state) => state.visitors.data);
-  const dispatch = useDispatch();
+  const { data, isLoading } = useFetchVisitors();
+  const { mutateAsync } = useDeleteVisitor();
+
+  const visitors = data?.data;
+
   const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
 
   const filteredVisitors = useMemo(() => {
@@ -29,14 +33,13 @@ const VisitorsAll = () => {
   }, [searchQuery, visitors]);
 
   const handleDelete = async (id) => {
+    // TODO: Change to Modal (qurban)
     if (window.confirm(t("visitorDeleteConfirm"))) {
-      setIsLoading(true);
       try {
-        dispatch(deleteVisitor({ id }));
+        await mutateAsync(id);
       } catch (error) {
         console.error(t("errorDeletingVisitor"), error);
       }
-      setIsLoading(false);
     }
   };
 
@@ -50,19 +53,31 @@ const VisitorsAll = () => {
 
   const headItems = [
     "#",
+    t("fin"),
     t("photo"),
     t("name"),
+    t("email"),
     t("phone"),
-    t("fin"),
+    t("visitStartDate"),
+    t("visitEndDate"),
     t("actions"),
   ];
 
-  const items = filteredVisitors.map((visitor, index) => ({
+  const items = filteredVisitors?.map((visitor, index) => ({
     id: visitor.id,
-    photo: <Avatar size="64px" src={visitor.photo} alt={visitor.name} />,
-    name: visitor.name,
-    phone: visitor.phone,
+    avatar: <Avatar size="64px" src={visitor.avatar} alt={visitor.name} />,
     fin: visitor.fin,
+    name: visitor.name,
+    email: visitor.email,
+    phone: visitor.phone,
+    visitStartDate: format(
+      new Date(visitor.visit_start_date * 1000),
+      "dd MMM yy HH:mm",
+    ),
+    visit_end_date: format(
+      new Date(visitor.visit_end_date * 1000),
+      "dd MMM yy HH:mm",
+    ),
   }));
 
   if (isLoading) {
@@ -75,21 +90,28 @@ const VisitorsAll = () => {
 
   return (
     <div className="visitors-all-container">
-      <Breadcrumb
-        paths={[
-          { label: t("breadcrumb.dashboard"), to: AppPaths.dashboard.home },
-          { label: t("breadcrumb.visitors") },
-        ]}
-      />
-      <div className="search-bar">
-        <input
-          type="text"
-          placeholder={t("searchVisitors")}
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
+      <div className="visitors-wrapper d-row d-flex justify-content-between">
+        <Breadcrumb
+          paths={[
+            { label: t("breadcrumb.dashboard"), to: AppPaths.dashboard.home },
+            { label: t("breadcrumb.visitors") },
+          ]}
         />
+        <div className="search-bar">
+          <input
+            type="text"
+            placeholder={t("Search Visitors")}
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+
+          <Button variant="primary" className="search">
+            <Link to={AppPaths.visitors.add}>{t("Add Visitor")}</Link>
+          </Button>
+        </div>
       </div>
       <DataTable
+        isLoading={isLoading}
         withAction
         headItems={headItems}
         tableProps={{ striped: true, bordered: true, hover: true }}

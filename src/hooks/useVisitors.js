@@ -10,7 +10,7 @@ import {
   updateVisitor,
 } from "../api/visitorsApi";
 
-import { setVisitorsMeta, setVisitors } from "../store/reducers/visitorReducer";
+import { setVisitors, setVisitorsMeta } from "../store/reducers/visitorReducer";
 
 export const useFetchVisitors = () => {
   const dispatch = useDispatch();
@@ -42,7 +42,7 @@ export const useAddVisitor = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: addVisitor,
+    mutationFn: (visitor) => addVisitor(visitor),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["visitors"] });
     },
@@ -54,8 +54,9 @@ export const useUpdateVisitor = () => {
 
   return useMutation({
     mutationFn: (data) => updateVisitor(data.id, data.visitor),
-    onSuccess: () => {
+    onSuccess: (_, variables) => {
       queryClient.invalidateQueries({ queryKey: ["visitors"] });
+      queryClient.invalidateQueries({ queryKey: ["visitor", variables.id] });
     },
   });
 };

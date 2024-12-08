@@ -71,7 +71,7 @@ const OfficeAll = () => {
           ]}
         />
         <div className="searchAddBtn">
-          <Button type="button">
+          <Button type="button" className="search">
             <Link to={AppPaths.offices.add}>{t("office.add.add")}</Link>
           </Button>
         </div>
